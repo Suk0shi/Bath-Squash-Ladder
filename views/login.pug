@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 Login
+  if user
+    h1 WELCOME BACK #{user.name}
+    a(href="/log-out") LOG OUT
+  else
+    form(action="/log-in" method="POST")
+      label(for="email") Email
+      input(id="email" placeholder="email" type="email") 
+      label(for="password") Password 
+      input(id="password" type="password")
+      button Login
+    h2 Don't have an account?
+    a(class='signUpButton' href="/signUp") Sign up

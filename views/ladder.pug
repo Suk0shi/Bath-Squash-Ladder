@@ -1,0 +1,23 @@
+extends layout
+
+block head 
+    link(rel='stylesheet', href='/stylesheets/ladder.css')
+
+block content
+  h1 Ladder
+
+  table(style='width:100%', border='1')
+    tr 
+      th Position 
+      th Player
+    if users
+      each user in users 
+        tr 
+          td(class='position') #{user.position}
+          td #{user.name + ' ' + user.surname}
+          if loggedInUser
+            if Number(loggedInUser.position) > Number(user.position)
+              td
+                button Challenge
+  <br>
+  h2 Log in to challenge players on the ladder
