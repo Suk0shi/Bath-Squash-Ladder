@@ -71,6 +71,7 @@ form button {
   background-color: var(--yellow);
   border-style: none;
   font-weight: 900;
+  color: black;
 }
 
 input {
@@ -80,10 +81,6 @@ input {
 }
 input:focus {
   border-style: none;
-}
-
-button {
-  color: black;
 }
 
 .signUpButton {
