@@ -1,0 +1,25 @@
+extends layout
+
+block head 
+  script(src='/javascripts/passwordCheck.js' defer) 
+
+block content
+  h1 Sign Up
+  form(method='POST')
+    label(for='name') Name*
+    input(id='name' placeholder='name' type='text'  required value=(undefined===user ? '' : user.name))
+    label(for='surname') Surname*
+    input(id='surname' placeholder='surname' type='text' required value=(undefined===user ? '' : user.surname)) 
+    label(for='email') University Email*
+    input(id='email' placeholder='email@bath.ac.uk' type='email' required value=(undefined===user ? '' : user.email))
+    label(for='password') Password*
+    input(id='password' type='password' placeholder="password" required)
+    label(for='passwordConfirm') Confirm Password*
+    input(id='passwordConfirm' type='password' placeholder="password" required onkeyup="validate_password()")
+    button(id='submit' onclick='reset_highlighting()') Sign Up
+  div(id='wrong_pass_alert')
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
