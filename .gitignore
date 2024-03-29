@@ -20,3 +20,6 @@ build/
 
 # Ignore any local configuration files
 cert/
+
+# ttimmons: Ignore any local poc files
+test.js

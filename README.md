@@ -17,7 +17,8 @@ This is a web app made for the University of Bath Squash club where players can 
 
 ## Installation
 
-1. Run `npm install` to get all the required dependancies
+1. Run `npm install` or `npm i` to get all the required dependancies
+2. Place the PrivateKey inside the `cert/` directory for the server side connection
 
 ## Usage
 
