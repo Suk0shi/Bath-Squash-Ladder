@@ -17,3 +17,6 @@ Thumbs.db
 # Ignore any generated files or build directories
 dist/
 build/
+
+# Ignore any local configuration files
+cert/
