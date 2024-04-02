@@ -34,4 +34,23 @@ block content
         li!= error.msg
 
 block scripts
-  script(src='/javascripts/auth.js')
+
+  script(type="module").
+    import { signupEmailPassword } from '/javascripts/index.js';
+
+    // signup
+    const signupForm = document.querySelector('#signup-form');
+
+    // add event listerner to the form
+    signupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // get user info
+        const email = signupForm['signup-email'].value;
+        const password = signupForm['signup-password'].value;
+
+        console.log(email, password);
+
+        // sign up the user
+        signupEmailPassword(email, password);
+    });
