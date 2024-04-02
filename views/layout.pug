@@ -6,6 +6,7 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='stylesheet', href='/stylesheets/style.css')
     block head
+
   body
     div(class='navbar') 
       h1 Bath Squash Ladder
@@ -17,3 +18,37 @@ html
 
     div(class='content')
       block content
+
+    script(type="module").
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js";
+      import { getFirestore } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-firestore.js";
+      import { getAuth } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-auth.js";
+
+      // Your web app's Firebase configuration
+      document.addEventListener('DOMContentLoaded', function() {
+      const firebaseConfig = {
+          apiKey: "AIzaSyCX8_5UWWZ8WRSobm1whf71m2Q-Z1AmuGY",
+          authDomain: "bathsquash.firebaseapp.com",
+          projectId: "bathsquash",
+          storageBucket: "bathsquash.appspot.com",
+          messagingSenderId: "178684431385",
+          appId: "1:178684431385:web:ea23a9ef53688e29e8ee88",
+          measurementId: "G-9DEF8K42EG"
+        };
+    
+        try {
+          // Initialize Firebase
+          initializeApp(firebaseConfig);
+          const db = getFirestore();
+          const auth = getAuth();
+
+          console.log("Firebase Initialized");
+        } catch (e) {
+          console.error(e);
+        }
+      });
+
+    block scripts
+
+
