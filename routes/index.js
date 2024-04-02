@@ -2,44 +2,18 @@ var express = require('express');
 const { response } = require('../app');
 var router = express.Router();
 
+const challenges_controller = require("../controllers/challengesController")
+const users_controller = require("../controllers/usersController")
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('ladder', 
-    {
-      users: [
-        {'position':'1', 'name':'Bob', 'surname':'Taylor'}, 
-        {'position':'2', 'name':'Taylor', 'surname':'Bobson'}
-      ], 
-      loggedInUser: {'position':'2'}
-    });
-});
+router.get('/', challenges_controller.homepage_get);
 
-router.get('/personal', function(req, res, next) {
-  // get all the challenges from the firestore database
-  const db = req.app.get('db')
+router.get('/personal', challenges_controller.challenges_get);
 
-  const challengesRef = db.collection('challenges')
-  challengesRef
-    .get()
-    .then(snapshot => {
-      console.log(snapshot.docs.map(doc => doc.data()))
-    })
-    .catch(error => {
-      console.log(`Oops! ${error}`)
-    })
+router.get('/global', challenges_controller.global_get);
 
-  res.render('personal');
-});
+router.get('/login', challenges_controller.login_get);
 
-router.get('/global', function(req, res, next) {
-  res.render('global');
-});
+router.get('/signUp', challenges_controller.signUp_get);
 
-router.get('/login', function(req, res, next) {
-  res.render('login');
-});
-
-router.get('/signUp', function(req, res, next) {
-  res.render('signUp');
-});
 module.exports = router;

@@ -1,16 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+const challenges_controller = require("../controllers/challengesController");
+const users_controller = require("../controllers/usersController");
+
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('ladder', 
-    {
-      users: [
-        {'position':'1', 'name':'Bob', 'surname':'Taylor'}, 
-        {'position':'2', 'name':'Taylor', 'surname':'Bobson'}
-      ], 
-      loggedInUser: {'position':'2'}
-    });
-});
+router.get('/', challenges_controller.homepage_get);
 
 module.exports = router;
