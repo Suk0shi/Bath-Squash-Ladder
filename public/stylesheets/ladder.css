@@ -1,3 +1,26 @@
+.ladderPage {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  gap: 40px;
+}
+
+.personalBackground,
+.ladderBackground,
+.globalBackground {
+  display: grid;
+  justify-content: center;
+}
+
+.personal,
+.global {
+  
+}
+
+.ladder {
+  
+}
+
 table {
     background-color: var(--mediumDarkBlue);
     border-style: none;
