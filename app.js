@@ -28,7 +28,7 @@ db.settings({ timestampsInSnapshots: true });
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-app.set('db', db);  
+app.set('db', db); 
 
 app.use(logger('dev'));
 app.use(express.json());
