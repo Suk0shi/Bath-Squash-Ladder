@@ -1,0 +1,25 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore environment-specific configuration files
+.env
+
+# Ignore npm debug log
+npm-debug.log
+
+# Ignore logs
+logs/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore any generated files or build directories
+dist/
+build/
+
+# Ignore any local configuration files
+cert/
+
+# ttimmons: Ignore any local poc files
+test.js

@@ -1,3 +1,9 @@
+// Import the functions you need from the SDKs you need
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+const { initializeApp, cert } = require('firebase-admin/app');
+const { getFirestore } = require('firebase-admin/firestore');
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -6,12 +12,23 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var challengesRouter = require('./routes/challenges');
 
 var app = express();
+
+// Firebase configuration
+initializeApp({
+  credential: cert("./cert/bathsquash-firebase-adminsdk-7w7tp-2499e7429d.json")
+});
+
+// Firestore configuration
+const db = getFirestore();
+db.settings({ timestampsInSnapshots: true });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+app.set('db', db); 
 
 app.use(logger('dev'));
 app.use(express.json());

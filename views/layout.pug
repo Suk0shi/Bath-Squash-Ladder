@@ -2,6 +2,32 @@ doctype html
 html
   head
     title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    block head
+
   body
-    block content
+    div(class='navbar') 
+      h1 Bath Squash Ladder
+      div(class='navigation')
+        a(href='/') Ladder
+        a(href='/personal') Personal
+        a(href='/global') Global
+        a(href='/login') Login / Sign up
+
+    div(class='content')
+      block content
+
+    script(type="module").
+      // run the index.js script
+      import { signupEmailPassword } from '/javascripts/index.js';
+
+      const testValue = 'test';
+
+      // export all
+      export { signupEmailPassword, testValue };
+
+    block scripts
+
+
