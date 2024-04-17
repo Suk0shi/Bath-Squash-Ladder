@@ -18,13 +18,6 @@ const firebaseConfig = {
     measurementId: "G-9DEF8K42EG"
   };
 
-
-// try {
-//     console.log("Firebase Initialized");
-// } catch (e) {
-//     console.error(e);
-// }
-
 // Initialize Firebase
 const app_fb = initializeApp(firebaseConfig);
 const db = getFirestore(app_fb);

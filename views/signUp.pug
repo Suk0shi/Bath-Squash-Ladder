@@ -36,8 +36,6 @@ block content
 block scripts
 
   script(type="module").
-    import { signupEmailPassword } from '/javascripts/index.js';
-
     // signup
     const signupForm = document.querySelector('#signup-form');
 
@@ -46,11 +44,25 @@ block scripts
         e.preventDefault();
 
         // get user info
+        const firstname = signupForm['signup-firstname'].value;
+        const surname = signupForm['signup-surname'].value;
         const email = signupForm['signup-email'].value;
         const password = signupForm['signup-password'].value;
 
         console.log(email, password);
 
-        // sign up the user
-        signupEmailPassword(email, password);
+        // submit a post request to the express server with the user info
+        fetch('/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                firstname,
+                surname,
+                email,
+                password
+            })
+        });
+
     });

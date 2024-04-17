@@ -3,6 +3,7 @@
 
 const { initializeApp, cert } = require('firebase-admin/app');
 const { getFirestore } = require('firebase-admin/firestore');
+const { getAuth } = require('firebase-admin/auth');
 
 var createError = require('http-errors');
 var express = require('express');
@@ -21,6 +22,9 @@ initializeApp({
   credential: cert("./cert/bathsquash-firebase-adminsdk-7w7tp-2499e7429d.json")
 });
 
+// Auth configuration
+const auth = getAuth();
+
 // Firestore configuration
 const db = getFirestore();
 db.settings({ timestampsInSnapshots: true });
@@ -29,6 +33,7 @@ db.settings({ timestampsInSnapshots: true });
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.set('db', db);  
+app.set('auth', auth);
 
 app.use(logger('dev'));
 app.use(express.json());
