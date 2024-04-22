@@ -17,6 +17,10 @@ var challengesRouter = require('./routes/challenges');
 
 var app = express();
 
+// view engine setup
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // Firebase configuration
 initializeApp({
   credential: cert("./cert/bathsquash-firebase-adminsdk-7w7tp-2499e7429d.json")

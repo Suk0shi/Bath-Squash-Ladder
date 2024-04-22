@@ -9,23 +9,23 @@ block content
   - var user = {name: 'Thomas', surname: 'Timmons', email: 'tlt33@bath.ac.uk'}
 
   h1 Sign Up
-  form(id='signup-form')
-    label(for='signup-firstname') Name*
-    input(id='signup-firstname' placeholder='Firstname' type='text' required value=(undefined===user ? '' : user.name))
+  form(id='signupForm' method='POST' action='/signup' enctype='application/x-www-form-urlencoded')
+    label(for='signupFirstname') Name*
+    input(id='signupFirstname' name='firstname' placeholder='Firstname' type='text' required value=(undefined===user ? '' : user.name))
 
-    label(for='signup-surname') Surname*
-    input(id='signup-surname' placeholder='Surname' type='text' required value=(undefined===user ? '' : user.surname)) 
+    label(for='signupSurname') Surname*
+    input(id='signupSurname' name='surname' placeholder='Surname' type='text' required value=(undefined===user ? '' : user.surname)) 
 
-    label(for='signup-email') University Email*
-    input(id='signup-email' placeholder='jb1@bath.ac.uk' type='email' required value=(undefined===user ? '' : user.email))
+    label(for='signupEmail') University Email*
+    input(id='signupEmail' name='email' placeholder='jb1@bath.ac.uk' type='email' required value=(undefined===user ? '' : user.email))
 
-    label(for='signup-password') Password*
-    input(id='signup-password' type='password' placeholder="Password" required)
+    label(for='signupPassword') Password*
+    input(id='signupPassword' name='password' type='password' placeholder="Password" required)
 
-    label(for='signup-passwordConfirm') Confirm Password*
-    input(id='signup-passwordConfirm' type='password' placeholder="Password" required onkeyup="validate_password()")
+    label(for='signupPasswordConfirm') Confirm Password*
+    input(id='signupPasswordConfirm' type='password' placeholder="Password" required onkeyup="validate_password()")
 
-    button(id="signup-submit" onclick='reset_highlighting()') Sign Up
+    button(id="signupSubmit" onclick='reset_highlighting()') Sign Up
   div(id='wrong_pass_alert')
 
   if errors
@@ -35,34 +35,38 @@ block content
 
 block scripts
 
-  script(type="module").
-    // signup
-    const signupForm = document.querySelector('#signup-form');
+  //- script(type="module").
+  //-   // signup
+  //-   const signupForm = document.querySelector('#signupForm');
 
-    // add event listerner to the form
-    signupForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+  //-   // add event listerner to the form
+  //-   signupForm.addEventListener('submit', (e) => {
+  //-       e.preventDefault();
 
-        // get user info
-        const firstname = signupForm['signup-firstname'].value;
-        const surname = signupForm['signup-surname'].value;
-        const email = signupForm['signup-email'].value;
-        const password = signupForm['signup-password'].value;
+  //-       // get user info
+  //-       const firstname = signupForm['signup-firstname'].value;
+  //-       const surname = signupForm['signup-surname'].value;
+  //-       const email = signupForm['signup-email'].value;
+  //-       const password = signupForm['signup-password'].value;
 
-        console.log(email, password);
+  //-       console.log(email, password);
 
-        // submit a post request to the express server with the user info
-        fetch('/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                firstname,
-                surname,
-                email,
-                password
-            })
-        });
+  //-       // submit a post request to the express server with the user info
+  //-       try {  
+  //-         fetch('/signup', {
+  //-             method: 'POST',
+  //-             headers: {
+  //-                 'Content-Type': 'application/json'
+  //-             },
+  //-             body: JSON.stringify({
+  //-                 firstname,
+  //-                 surname,
+  //-                 email,
+  //-                 password
+  //-             })
+  //-         })
+  //-       } catch (error) {
+  //-         console.log(error);
+        }
 
     });

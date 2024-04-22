@@ -17,20 +17,20 @@ inputs.forEach(input => {
 
 // updates the style of the input based on the validity of the input
 function validate_password() {
-  var pass = document.getElementById('signup-password').value;
-  var confirm_pass = document.getElementById('signup-passwordConfirm').value;
+  var pass = document.getElementById('signupPassword').value;
+  var confirm_pass = document.getElementById('signupPasswordConfirm').value;
   if (pass != confirm_pass) {
       document.getElementById('wrong_pass_alert').style.color = 'red';
       document.getElementById('wrong_pass_alert').innerHTML
           = 'Please use the same password';
-      document.getElementById('signup-submit').disabled = true;
-      document.getElementById('signup-submit').style.opacity = (0.4);
+      document.getElementById('signupSubmit').disabled = true;
+      document.getElementById('signupSubmit').style.opacity = (0.4);
   } else {
       document.getElementById('wrong_pass_alert').style.color = 'green';
       document.getElementById('wrong_pass_alert').innerHTML =
           'Password Matched';
-      document.getElementById('signup-submit').disabled = false;
-      document.getElementById('signup-submit').style.opacity = (1);
+      document.getElementById('signupSubmit').disabled = false;
+      document.getElementById('signupSubmit').style.opacity = (1);
   }
 }
 
