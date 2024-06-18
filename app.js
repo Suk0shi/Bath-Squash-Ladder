@@ -9,7 +9,9 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var flash = require('connect-flash');
 var logger = require('morgan');
+var session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -20,6 +22,9 @@ var app = express();
 // view engine setup
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// requires an active session
+// app.use(flash());
 
 // Firebase configuration
 initializeApp({

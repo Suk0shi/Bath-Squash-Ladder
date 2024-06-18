@@ -1,9 +1,9 @@
-var express = require('express');
+const express = require('express');
 var router = express.Router();
 
 const challenges_controller = require("../controllers/challengesController");
 const users_controller = require("../controllers/usersController");
-const { createUserWithEmailAndPassword } = require('firebase-admin/auth');
+const { doc } = require('firebase-admin/firestore');
 
 /* GET home page. */
 
@@ -25,32 +25,39 @@ router.post('/signUp', function(req, res, next) {
   const email = req.body.email
   const password = req.body.password
   
-  console.log(`Firstname: ${firstname}`);
-  console.log(`Surname: ${surname}`);
-  console.log(`Email: ${email}`);
-  console.log(`Password: ${password}`);
-  
   // create a new user
   const auth = req.app.get('auth');
-  
-  // create a new auth user
-  // createUserWithEmailAndPassword(auth, email, password)
-  //   .then((userCredential) => {
-    //     // Signed up 
-    //     const user = userCredential.user;
-    //     console.log(`User: ${user}`);
-    //     res.redirect('/login');
-    //     // ...
-    //   })
-    //   .catch((error) => {
-      //     const errorCode = error.code;
-      //     const errorMessage = error.message;
-      //     res.redirect('/signUp');
-      //     // ..
-      //   });
-      
-      res.redirect('/signUp');
+  const db = req.app.get('db');
+
+  // create a new user with the email and password
+  auth
+  .createUser({
+    email: email,
+    emailVerified: false,
+    password: password,
+    displayName: firstname + ' ' + surname,
+    disabled: false,
+  })
+  .then((userRecord) => {
+    // See the UserRecord reference doc for the contents of userRecord.
+    console.log('Successfully created new user:', userRecord.uid);
+
+    // create a new user in the database wih the user's auth uid
+    db.collection('players').doc(userRecord.uid).set({
+      firstname: firstname,
+      surname: surname,
+      email: email,
+      squashLevelsUID: null
     });
+
+    res.redirect('/login');
+  })
+  .catch((error) => {
+    console.log('Error creating new user:', error);
+    req.flash('error', error.message);
+    res.redirect('/signUp');
+  });
+});
 
     
 router.get('/signUp', challenges_controller.signUp_get);
